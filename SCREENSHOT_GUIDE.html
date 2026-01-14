@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Save Screenshot Instructions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 { color: #333; }
+        .step {
+            background: #e3f2fd;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 4px solid #2196F3;
+            border-radius: 5px;
+        }
+        .code {
+            background: #263238;
+            color: #aed581;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        .warning {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .success {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📸 How to Add Your Screenshot</h1>
+        
+        <div class="warning">
+            <strong>⚠️ Important:</strong> You already have a screenshot! Now you need to save it as a file.
+        </div>
+        
+        <h2>Step 1: Save the Screenshot</h2>
+        <div class="step">
+            <p>Take a screenshot of your website and save it as:</p>
+            <div class="code">preview.png</div>
+            <p>Recommended size: 1200x630 pixels (for social media)</p>
+        </div>
+        
+        <h2>Step 2: Replace the Placeholder</h2>
+        <div class="step">
+            <p>Replace the current <code>preview.png</code> file in the root directory with your actual screenshot image.</p>
+        </div>
+        
+        <h2>Step 3: Commit to GitHub</h2>
+        <div class="step">
+            <p>Add and commit your screenshot:</p>
+            <div class="code">
+git add preview.png<br>
+git commit -m "Add website preview screenshot"<br>
+git push origin main
+            </div>
+        </div>
+        
+        <h2>Step 4: Wait for CDN Update</h2>
+        <div class="step">
+            <p>The CDN (jsdelivr) may take a few minutes to update. Your image will be available at:</p>
+            <div class="code">
+https://cdn.jsdelivr.net/gh/karthikeyan006867/useless@main/preview.png
+            </div>
+        </div>
+        
+        <div class="success">
+            <strong>✅ Done!</strong> Your screenshot will now appear when you share your website link!
+        </div>
+        
+        <h2>🔄 Alternative: Use Placeholder</h2>
+        <div class="step">
+            <p>If you want to use a placeholder for now, the current URL works:</p>
+            <div class="code">
+https://via.placeholder.com/1200x630/FF1493/FFFFFF?text=World's+Worst+Website+🤡
+            </div>
+        </div>
+        
+        <h2>📝 Current Status</h2>
+        <div class="step">
+            <p><strong>Database:</strong> ✅ Neon PostgreSQL configured</p>
+            <p><strong>Environment:</strong> ✅ .env file created</p>
+            <p><strong>Security:</strong> ✅ .gitignore updated</p>
+            <p><strong>Screenshot:</strong> ⏳ Waiting for you to upload</p>
+        </div>
+        
+        <h2>🎯 Quick Command</h2>
+        <div class="step">
+            <p>If you have your screenshot ready, run this in terminal:</p>
+            <div class="code">
+# Copy your screenshot to the project<br>
+cp /path/to/your/screenshot.png preview.png<br>
+<br>
+# Commit and push<br>
+git add preview.png .env .gitignore db-config.js DATABASE_SETUP.md<br>
+git commit -m "Add database config and preview image"<br>
+git push origin main
+            </div>
+        </div>
+        
+        <div class="warning">
+            <strong>⚠️ Security Note:</strong> The .gitignore file is configured to EXCLUDE .env from being committed. Your database credentials are safe!
+        </div>
+    </div>
+</body>
+</html>

@@ -5,7 +5,9 @@
 Welcome to digital chaos! This website was created for the "Borked UI Challenge" - a celebration of everything that makes web design terrible, frustrating, and hilariously broken.
 
 ## 🖼️ Preview Image
-![Website Preview](https://via.placeholder.com/1200x630/FF1493/FFFFFF?text=World's+Worst+Website+🤡)
+![Website Preview](https://cdn.jsdelivr.net/gh/karthikeyan006867/useless@main/preview.png)
+
+> **Note:** Replace `preview.png` with your actual screenshot and push to GitHub. The CDN will automatically serve it!
 
 ## 🌐 Live Demo
 **[Experience the Chaos Here!](https://karthikeyan006867.github.io/useless/)**
