@@ -763,3 +763,63 @@ h3 {
     75% { color: yellow; }
     100% { color: red; }
 }
+
+/* GitHub link in header */
+.github-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #24292e, #0366d6);
+    color: white !important;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.3s;
+    border: 2px solid white;
+}
+
+.github-link:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    background: linear-gradient(135deg, #0366d6, #24292e);
+}
+
+/* GitHub section */
+.github-section {
+    background: linear-gradient(135deg, rgba(36,41,46,0.8), rgba(3,102,214,0.8));
+    color: white;
+    text-align: center;
+}
+
+.github-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    border: 2px solid rgba(255,255,255,0.3);
+}
+
+.github-card h4 {
+    color: white;
+    margin-bottom: 15px;
+}
+
+.github-button {
+    display: inline-block;
+    padding: 12px 24px;
+    margin: 10px;
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: all 0.3s;
+    border: 2px solid white;
+    font-family: 'Comic Sans MS', cursive;
+}
+
+.github-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    background: linear-gradient(135deg, #20c997, #28a745);
+}
