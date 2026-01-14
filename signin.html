@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - Please Don't</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤡</text></svg>">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+    <style>
+        .signin-container {
+            max-width: 500px;
+            margin: 100px auto;
+            padding: 40px;
+            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            border-radius: 20px;
+            box-shadow: 0 0 50px rgba(255,0,255,0.5);
+            animation: wobble 2s infinite;
+        }
+        
+        @keyframes wobble {
+            0%, 100% { transform: rotate(-2deg); }
+            50% { transform: rotate(2deg); }
+        }
+        
+        .signin-form input {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: 3px solid #ff0000;
+            border-radius: 10px;
+            font-size: 16px;
+            font-family: 'Comic Sans MS', cursive;
+            background: #ffff00;
+        }
+        
+        .signin-form input:focus {
+            animation: shake 0.5s;
+            background: #00ff00;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 20px;
+            background: linear-gradient(45deg, #ff0000, #00ff00);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            cursor: pointer;
+            font-family: 'Comic Sans MS', cursive;
+            margin-top: 20px;
+            transition: all 0.3s;
+        }
+        
+        .submit-btn:hover {
+            transform: rotate(360deg) scale(1.2);
+        }
+        
+        .error-msg {
+            background: #ff0000;
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+            margin: 10px 0;
+            display: none;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="signin-container">
+        <h1 style="text-align: center; color: white; text-shadow: 2px 2px #000;">🔐 SIGN IN (IF YOU DARE) 🔐</h1>
+        
+        <div id="errorMsg" class="error-msg"></div>
+        
+        <form class="signin-form" id="signinForm" onsubmit="return handleSignIn(event)">
+            <input type="email" id="email" placeholder="Email (must end with @worst.com)" required>
+            <input type="password" id="password" placeholder="Password (minimum 100 characters)" required>
+            
+            <div style="margin: 20px 0;">
+                <label style="color: white; font-size: 14px;">
+                    <input type="checkbox" id="remember" onchange="handleCheckbox()">
+                    Remember me (doesn't work)
+                </label>
+            </div>
+            
+            <div style="margin: 20px 0; text-align: center;">
+                <p style="color: white; font-size: 16px;">Prove you're not a robot:</p>
+                <p style="font-size: 20px; color: #000;">🤖 What is 2+2? (Hint: It's NOT 4)</p>
+                <input type="text" id="captcha" placeholder="Enter answer" required>
+            </div>
+            
+            <button type="submit" class="submit-btn" id="submitBtn">SIGN IN NOW!!!</button>
+        </form>
+        
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="signup.html" style="color: #ffffff; font-size: 18px; text-decoration: underline;">Don't have an account? Sign Up!</a>
+        </div>
+        
+        <div style="text-align: center; margin-top: 10px;">
+            <a href="index.html" style="color: #ffff00; font-size: 14px;">← Back to Home (escape while you can)</a>
+        </div>
+    </div>
+    
+    <script src="firebase-config.js"></script>
+    <script src="auth.js"></script>
+</body>
+</html>

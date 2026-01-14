@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Your Biggest Mistake</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤡</text></svg>">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+    <style>
+        .signup-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            border-radius: 20px;
+            box-shadow: 0 0 100px rgba(255,0,255,0.8);
+            animation: pulse 3s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 100px rgba(255,0,255,0.8); }
+            50% { box-shadow: 0 0 200px rgba(0,255,255,0.8); }
+        }
+        
+        .signup-form input,
+        .signup-form select {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 3px dashed #ff00ff;
+            border-radius: 15px;
+            font-size: 14px;
+            font-family: 'Comic Sans MS', cursive;
+            background: #ffff99;
+        }
+        
+        .signup-form input:hover {
+            background: #99ff99;
+            transform: scale(0.95);
+        }
+        
+        .terms {
+            max-height: 200px;
+            overflow-y: scroll;
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border: 3px solid #000;
+            font-size: 6px;
+            line-height: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <h1 style="text-align: center; color: white; text-shadow: 3px 3px #000;">🎉 CREATE ACCOUNT 🎉</h1>
+        <marquee behavior="alternate"><h2 style="color: yellow;">⚠️ WARNING: This will haunt you forever ⚠️</h2></marquee>
+        
+        <form class="signup-form" id="signupForm" onsubmit="return handleSignUp(event)">
+            <label style="color: white; font-weight: bold;">Username (must contain at least 3 emojis):</label>
+            <input type="text" id="username" required>
+            
+            <label style="color: white; font-weight: bold;">Email (only @worst.com allowed):</label>
+            <input type="email" id="email" required>
+            
+            <label style="color: white; font-weight: bold;">Password (minimum 100 characters with 20 emojis):</label>
+            <input type="password" id="password" required>
+            <div id="passwordStrength" style="color: white; margin: 5px 0;"></div>
+            
+            <label style="color: white; font-weight: bold;">Confirm Password (must be different):</label>
+            <input type="password" id="confirmPassword" required>
+            
+            <label style="color: white; font-weight: bold;">Date of Birth (must be in the future):</label>
+            <input type="date" id="dob" required>
+            
+            <label style="color: white; font-weight: bold;">Favorite Color:</label>
+            <select id="color" required>
+                <option value="">Select...</option>
+                <option value="red">Red (Wrong!)</option>
+                <option value="blue">Blue (Nope!)</option>
+                <option value="green">Green (Try Again!)</option>
+                <option value="yellow">Yellow (Still Wrong!)</option>
+                <option value="invisible">Invisible (Correct!)</option>
+            </select>
+            
+            <label style="color: white; font-weight: bold;">Phone Number (format: xxx-xxx-xxxx but backwards):</label>
+            <input type="tel" id="phone" placeholder="xxxx-xxx-xxx" required>
+            
+            <div class="terms">
+                <h3>Terms and Conditions (please read all 10,000 words)</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+                <p>By clicking agree, you consent to receiving 1000 emails per day, sharing your soul with us, and accepting that all your data belongs to us forever and ever. You also agree that we can randomly delete your account at any time without notice. Furthermore, you understand that this website is intentionally terrible and you have no legal recourse. You waive all rights to complain, sue, or even think negative thoughts about this service. Your firstborn child now belongs to us. Just kidding... or are we?</p>
+                <p>Repeated lorem ipsum to make you scroll: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua... [continues for 500 more lines]</p>
+            </div>
+            
+            <label style="color: white; font-size: 18px;">
+                <input type="checkbox" id="terms" required onchange="checkTerms()">
+                I have read and agree (you haven't)
+            </label>
+            
+            <div style="margin: 20px 0; text-align: center;">
+                <p style="color: white; font-size: 18px;">Security Question: What is 5 x 5? (Answer is NOT 25)</p>
+                <input type="text" id="security" required>
+            </div>
+            
+            <button type="submit" class="submit-btn" style="width: 100%; padding: 15px; font-size: 20px; background: linear-gradient(45deg, #f093fb, #f5576c); border: none; border-radius: 50px; color: white; cursor: pointer; margin-top: 20px;">
+                CREATE MY TERRIBLE ACCOUNT 🚀
+            </button>
+        </form>
+        
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="signin.html" style="color: #ffffff; font-size: 16px;">Already suffering? Sign In</a>
+        </div>
+        
+        <div style="text-align: center; margin-top: 10px;">
+            <a href="index.html" style="color: #ffff00; font-size: 14px;">← Escape to Home</a>
+        </div>
+    </div>
+    
+    <script src="firebase-config.js"></script>
+    <script src="auth.js"></script>
+    <script>
+        let clickCount = 0;
+        
+        function checkTerms() {
+            clickCount++;
+            if (clickCount < 10) {
+                alert('You need to click ' + (10 - clickCount) + ' more times to prove you read it!');
+                document.getElementById('terms').checked = false;
+            }
+        }
+        
+        document.getElementById('password').addEventListener('input', function(e) {
+            const pwd = e.target.value;
+            const emojiCount = (pwd.match(/[\u{1F000}-\u{1F9FF}]/gu) || []).length;
+            const strength = document.getElementById('passwordStrength');
+            
+            if (pwd.length < 100) {
+                strength.textContent = `Too short! Need ${100 - pwd.length} more characters`;
+                strength.style.color = '#ff0000';
+            } else if (emojiCount < 20) {
+                strength.textContent = `Need ${20 - emojiCount} more emojis!`;
+                strength.style.color = '#ffff00';
+            } else {
+                strength.textContent = '✅ Password is terrible enough!';
+                strength.style.color = '#00ff00';
+            }
+        });
+    </script>
+</body>
+</html>

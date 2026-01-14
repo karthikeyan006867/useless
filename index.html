@@ -74,6 +74,17 @@
                     ⭐ View Source Code on GitHub | Fork This Chaos!
                 </a>
             </div>
+            <div style="margin-top: 15px; display: flex; gap: 10px; justify-content: center;">
+                <a href="signin.html" style="padding: 10px 20px; background: linear-gradient(45deg, #ff00ff, #00ffff); color: white; text-decoration: none; border-radius: 20px; font-size: 16px; animation: pulse 2s infinite;">
+                    🔐 SIGN IN (Dare You!)
+                </a>
+                <a href="signup.html" style="padding: 10px 20px; background: linear-gradient(45deg, #f093fb, #f5576c); color: white; text-decoration: none; border-radius: 20px; font-size: 16px; animation: pulse 2s infinite;">
+                    ✍️ SIGN UP (Bad Idea!)
+                </a>
+                <a href="dashboard.html" style="padding: 10px 20px; background: linear-gradient(45deg, #667eea, #764ba2); color: white; text-decoration: none; border-radius: 20px; font-size: 16px; animation: pulse 2s infinite;">
+                    📊 DASHBOARD
+                </a>
+            </div>
         </header>
 
         <!-- Navigation that moves around -->
@@ -285,6 +296,92 @@
             <!-- Massive text -->
             <section>
                 <p style="font-size: 100px; line-height: 0.8;">HI</p>
+            </section>
+
+            <!-- NEW TERRIBLE FEATURES -->
+            
+            <!-- Fake Download Button -->
+            <section class="download-section" style="background: linear-gradient(45deg, #00ff00, #00aa00); padding: 30px; border-radius: 20px; margin: 20px 0; text-align: center;">
+                <h2 style="color: white; font-size: 36px; animation: blink 1s infinite;">🎁 FREE DOWNLOAD!</h2>
+                <p style="color: white; font-size: 20px;">Click here to download your FREE prize!</p>
+                <button onclick="fakeDownload()" style="padding: 20px 40px; font-size: 24px; background: #ff0000; color: white; border: none; border-radius: 50px; cursor: pointer; animation: pulse 1s infinite;">
+                    DOWNLOAD NOW!!! (100% FREE)
+                </button>
+                <p style="color: yellow; font-size: 12px; margin-top: 10px;">*Downloads nothing but disappointment</p>
+            </section>
+            
+            <!-- Annoying Survey -->
+            <section class="survey-section" style="background: rgba(255,0,255,0.3); padding: 20px; border-radius: 15px; margin: 20px 0;">
+                <h3>📊 Quick Survey (Required to Continue)</h3>
+                <p>How would you rate your experience so far?</p>
+                <div style="display: flex; gap: 10px; justify-content: center; margin: 15px 0;">
+                    <button onclick="rateSite(1)" style="padding: 10px 20px; background: #ff0000; color: white; border: none; border-radius: 10px; cursor: pointer;">😡 Terrible</button>
+                    <button onclick="rateSite(2)" style="padding: 10px 20px; background: #ff6600; color: white; border: none; border-radius: 10px; cursor: pointer;">😠 Bad</button>
+                    <button onclick="rateSite(3)" style="padding: 10px 20px; background: #ffff00; color: black; border: none; border-radius: 10px; cursor: pointer;">😐 Meh</button>
+                    <button onclick="rateSite(4)" style="padding: 10px 20px; background: #00ff00; color: black; border: none; border-radius: 10px; cursor: pointer;">😊 Good</button>
+                    <button onclick="rateSite(5)" style="padding: 10px 20px; background: #00aa00; color: white; border: none; border-radius: 10px; cursor: pointer;">😍 Amazing</button>
+                </div>
+                <p id="ratingResult" style="font-size: 14px; color: white;"></p>
+            </section>
+            
+            <!-- Fake Loading Indicators -->
+            <section style="text-align: center; margin: 30px 0;">
+                <h3>⏳ Important Processes Running...</h3>
+                <div style="background: #000; padding: 20px; border-radius: 10px; margin: 15px auto; max-width: 600px;">
+                    <p style="color: #00ff00; font-family: monospace;">Loading your data... 99%</p>
+                    <p style="color: #00ff00; font-family: monospace;">Connecting to server... Failed</p>
+                    <p style="color: #00ff00; font-family: monospace;">Retrying... Failed again</p>
+                    <p style="color: #ff0000; font-family: monospace;">Error: Success</p>
+                </div>
+            </section>
+            
+            <!-- Breaking News Ticker -->
+            <section style="background: #000; color: #fff; padding: 15px; margin: 20px 0; overflow: hidden;">
+                <strong style="color: #ff0000;">🚨 BREAKING NEWS:</strong>
+                <marquee behavior="scroll" direction="left" scrollamount="15" style="display: inline;">
+                    Website still broken after 10 years • Scientists baffled by Comic Sans usage • User survives 10 minutes • 
+                    New achievement: Wasted your time • Popups to increase by 500% • Dark mode makes things brighter •
+                    Forms will reset more often • Buttons running faster now • Your data has been sold 47 times •
+                </marquee>
+            </section>
+            
+            <!-- Social Proof (Fake Testimonials) -->
+            <section style="margin: 30px 0;">
+                <h3 style="text-align: center;">⭐ What Our Users Say (Totally Real!)</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
+                    <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 15px; border: 3px solid #ff00ff;">
+                        <p style="font-style: italic;">"I've never seen anything worse in my life. 10/10 would suffer again."</p>
+                        <p style="text-align: right; color: #ffff00;">- Definitely Not Fake Person</p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 15px; border: 3px solid #00ffff;">
+                        <p style="font-style: italic;">"My eyes are bleeding but I can't stop clicking. Send help."</p>
+                        <p style="text-align: right; color: #ffff00;">- Anonymous Victim #1247</p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 15px; border: 3px solid #00ff00;">
+                        <p style="font-style: italic;">"Best worst website ever. I lost my job because I couldn't stop."</p>
+                        <p style="text-align: right; color: #ffff00;">- Unemployed Developer</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Newsletter Signup (Another One) -->
+            <section style="background: linear-gradient(135deg, #ff0000, #ff00ff); padding: 30px; border-radius: 20px; margin: 30px 0; text-align: center;">
+                <h2 style="color: white;">📧 Subscribe to Our Newsletter!</h2>
+                <p style="color: white; font-size: 18px;">Get 100 emails per day! Unsubscribe link doesn't work!</p>
+                <input type="email" placeholder="your@email.com" style="padding: 15px; width: 300px; margin: 10px; border: 3px solid white; border-radius: 10px; font-size: 16px;">
+                <br>
+                <button onclick="subscribeNewsletter()" style="padding: 15px 40px; background: #ffff00; color: #000; border: none; border-radius: 50px; cursor: pointer; font-size: 18px; font-weight: bold;">
+                    SUBSCRIBE NOW!
+                </button>
+            </section>
+            
+            <!-- Countdown Timer (Goes Up) -->
+            <section style="text-align: center; margin: 30px 0;">
+                <h3>⏱️ Limited Time Offer Ends In:</h3>
+                <div id="countdown" style="font-size: 48px; color: #ff0000; font-family: 'Courier New', monospace; text-shadow: 2px 2px #000;">
+                    --:--:--
+                </div>
+                <p style="font-size: 14px; color: #666;">*Timer goes UP instead of down</p>
             </section>
 
             <!-- Randomly positioned elements -->

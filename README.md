@@ -1,11 +1,45 @@
 # 🎪 The World's Most Intentionally Terrible Website 🎪
 
+**Intentionally terrible website with user tracking, achievements & tasks - pure digital chaos!**
+
 Welcome to digital chaos! This website was created for the "Borked UI Challenge" - a celebration of everything that makes web design terrible, frustrating, and hilariously broken.
+
+## 🖼️ Preview Image
+![Website Preview](https://via.placeholder.com/1200x630/FF1493/FFFFFF?text=World's+Worst+Website+🤡)
 
 ## 🌐 Live Demo
 **[Experience the Chaos Here!](https://karthikeyan006867.github.io/useless/)**
 
 **Repository:** [github.com/karthikeyan006867/useless](https://github.com/karthikeyan006867/useless)
+
+## 🆕 NEW FEATURES - Now Even WORSE!
+
+### 🔐 User Authentication System
+- **Sign Up Page**: Requires 100+ character passwords with 20 emojis, future birth dates, and impossible validations
+- **Sign In Page**: CAPTCHAs with intentionally wrong answers (2+2=5)
+- **Firebase Integration**: Track all user suffering in real-time database
+- **Demo Mode**: Works without Firebase configuration for testing
+
+### 📊 User Dashboard
+- **25 Achievements**: From "First Victim" to "Chaos Master"
+- **15 Daily Tasks**: Complete impossible challenges for "rewards"
+- **Live Stats**: Track time wasted, clicks, frustration levels
+- **Leaderboard**: See who's suffering the most
+- **Profile Page**: Your personal hall of shame
+
+### 🎮 Challenge System
+- **8 Extreme Challenges**: From easy to IMPOSSIBLE
+- **Button Chase**: Catch the runaway button 50 times
+- **Form Hell**: Submit terrible form 10 times without reset
+- **1-Hour Endurance**: Can you survive?
+- **Ultimate Chaos**: Complete EVERYTHING in one session
+
+### 📈 Progress Tracking
+- Real-time achievement notifications
+- Task progress bars
+- Time tracking
+- Click counter
+- Frustration meter (always MAXIMUM)
 
 ## 🔥 Features (or Bugs?)
 

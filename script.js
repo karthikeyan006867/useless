@@ -463,5 +463,52 @@ console.log('%cBut there are no secrets here...', 'font-size: 16px; color: #ffff
 console.log('%c...or are there? 🤔', 'font-size: 16px; color: #ff6600;');
 console.log('%c\nJust kidding. This website is intentionally terrible.', 'font-size: 14px; color: #ffffff;');
 console.log('%cEnjoy your stay in digital hell! 😈', 'font-size: 14px; color: #ff0000;');
-console.log('%c\nTry to unlock all 10 achievements!', 'font-size: 14px; color: #00ffff;');
-console.log('%cHint: There are secrets hidden everywhere...', 'font-size: 12px; color: #ffff00;');
+console.log('%c\nTry to unlock all 25 achievements!', 'font-size: 14px; color: #00ffff;');
+console.log('%cHint: Sign up for the full chaos experience!', 'font-size: 12px; color: #ffff00;');
+
+// NEW TERRIBLE FEATURES
+
+// Fake download
+function fakeDownload() {
+    alert('⬇️ Download starting...');
+    setTimeout(() => {
+        alert('❌ Error 404: File not found!\n\nJust kidding, there was never a file! 😈');
+    }, 1000);
+}
+
+// Rating system
+function rateSite(rating) {
+    const messages = {
+        1: '❌ We don\'t accept negative feedback! Try again!',
+        2: '❌ Still too negative! Rate us 5 stars!',
+        3: '❌ 3 stars? That\'s basically an insult!',
+        4: '🤔 Getting better... but we want 5 stars!',
+        5: '⭐⭐⭐⭐⭐ Thank you! Your opinion has been ignored!'
+    };
+    document.getElementById('ratingResult').textContent = messages[rating];
+    
+    if (rating === 5) {
+        setTimeout(() => {
+            alert('Actually, your 5-star rating has been recorded as 1 star. Thanks! 😈');
+        }, 2000);
+    }
+}
+
+// Newsletter subscription
+function subscribeNewsletter() {
+    alert('✅ Subscribed!\n\nYou will now receive 100 emails per day!\n\nJust kidding... or are we? 📧');
+}
+
+// Countdown timer that goes UP
+let countdownSeconds = 0;
+function updateCountdown() {
+    countdownSeconds++;
+    const hours = Math.floor(countdownSeconds / 3600);
+    const minutes = Math.floor((countdownSeconds % 3600) / 60);
+    const seconds = countdownSeconds % 60;
+    
+    document.getElementById('countdown').textContent = 
+        `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+}
+setInterval(updateCountdown, 1000);
+

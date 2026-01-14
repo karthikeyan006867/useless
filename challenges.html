@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenges - More Pain Awaits</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤡</text></svg>">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .challenge-container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        
+        .challenge-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 30px;
+            margin: 20px 0;
+            border-radius: 20px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+        
+        .challenge-card:hover {
+            transform: translateY(-10px) rotate(2deg);
+        }
+        
+        .difficulty {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        
+        .easy { background: #00ff00; color: #000; }
+        .medium { background: #ffff00; color: #000; }
+        .hard { background: #ff6600; color: #fff; }
+        .impossible { background: #ff0000; color: #fff; animation: shake 0.5s infinite; }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="challenge-container">
+        <h1 style="text-align: center; color: white; font-size: 48px; text-shadow: 3px 3px #000;">
+            🎮 EXTREME CHALLENGES 🎮
+        </h1>
+        
+        <div style="text-align: center; margin: 20px 0;">
+            <a href="dashboard.html" style="color: #00ffff; font-size: 18px;">← Back to Dashboard</a>
+        </div>
+        
+        <!-- Challenge 1 -->
+        <div class="challenge-card">
+            <h2>🏃 The Great Button Chase</h2>
+            <span class="difficulty easy">EASY</span>
+            <p>Click the runaway button 50 times. Simple, right? Wrong! The button speeds up!</p>
+            <p><strong>Reward:</strong> 100 Misery Points + "Button Hunter" badge</p>
+            <button onclick="startChallenge('buttonChase')" style="padding: 10px 20px; background: #00ff00; border: none; border-radius: 20px; cursor: pointer; font-size: 16px;">
+                START CHALLENGE
+            </button>
+            <p id="buttonProgress" style="margin-top: 10px;">Progress: 0/50</p>
+        </div>
+        
+        <!-- Challenge 2 -->
+        <div class="challenge-card">
+            <h2>📝 Form Submission Hell</h2>
+            <span class="difficulty medium">MEDIUM</span>
+            <p>Successfully submit the terrible form 10 times in a row without it resetting!</p>
+            <p><strong>Reward:</strong> 250 Misery Points + "Form Master" badge</p>
+            <button onclick="startChallenge('formHell')" style="padding: 10px 20px; background: #ffff00; border: none; border-radius: 20px; cursor: pointer; font-size: 16px;">
+                ACCEPT PAIN
+            </button>
+            <p id="formProgress" style="margin-top: 10px;">Progress: 0/10</p>
+        </div>
+        
+        <!-- Challenge 3 -->
+        <div class="challenge-card">
+            <h2>🔍 Hidden Link Hunter</h2>
+            <span class="difficulty medium">MEDIUM</span>
+            <p>Find all 10 nearly-invisible links scattered across the website!</p>
+            <p><strong>Reward:</strong> 300 Misery Points + "Eagle Eye" badge</p>
+            <button onclick="startChallenge('hiddenLinks')" style="padding: 10px 20px; background: #ffff00; border: none; border-radius: 20px; cursor: pointer; font-size: 16px;">
+                START HUNT
+            </button>
+            <p id="linkProgress" style="margin-top: 10px;">Found: 0/10</p>
+        </div>
+        
+        <!-- Challenge 4 -->
+        <div class="challenge-card">
+            <h2>⏰ 1-Hour Endurance Test</h2>
+            <span class="difficulty hard">HARD</span>
+            <p>Stay on this website for 1 full hour without closing the tab. Can you survive?</p>
+            <p><strong>Reward:</strong> 500 Misery Points + "Iron Will" badge</p>
+            <button onclick="startChallenge('endurance')" style="padding: 10px 20px; background: #ff6600; border: none; border-radius: 20px; cursor: pointer; font-size: 16px; color: white;">
+                BEGIN TORTURE
+            </button>
+            <p id="enduranceProgress" style="margin-top: 10px;">Time: 0:00 / 60:00</p>
+        </div>
+        
+        <!-- Challenge 5 -->
+        <div class="challenge-card">
+            <h2>🍪 Cookie Clicker Madness</h2>
+            <span class="difficulty hard">HARD</span>
+            <p>Click the cookie 1000 times while your score randomly decreases!</p>
+            <p><strong>Reward:</strong> 400 Misery Points + "Cookie Veteran" badge</p>
+            <button onclick="startChallenge('cookieClicker')" style="padding: 10px 20px; background: #ff6600; border: none; border-radius: 20px; cursor: pointer; font-size: 16px; color: white;">
+                CLICK COOKIE
+            </button>
+            <p id="cookieProgress" style="margin-top: 10px;">Clicks: 0/1000 (Score: 0)</p>
+        </div>
+        
+        <!-- Challenge 6 -->
+        <div class="challenge-card">
+            <h2>🎯 CAPTCHA Nightmare</h2>
+            <span class="difficulty hard">HARD</span>
+            <p>Complete 20 different CAPTCHAs with intentionally wrong answers!</p>
+            <p><strong>Reward:</strong> 600 Misery Points + "Not a Robot" badge</p>
+            <button onclick="startChallenge('captcha')" style="padding: 10px 20px; background: #ff6600; border: none; border-radius: 20px; cursor: pointer; font-size: 16px; color: white;">
+                PROVE HUMANITY
+            </button>
+            <p id="captchaProgress" style="margin-top: 10px;">Solved: 0/20</p>
+        </div>
+        
+        <!-- Challenge 7 -->
+        <div class="challenge-card">
+            <h2>🎮 Konami Code Speed Run</h2>
+            <span class="difficulty impossible">IMPOSSIBLE</span>
+            <p>Enter the Konami code (↑↑↓↓←→←→BA) 10 times in under 30 seconds!</p>
+            <p><strong>Reward:</strong> 1000 Misery Points + "Speed Demon" badge</p>
+            <button onclick="startChallenge('konamiSpeed')" style="padding: 10px 20px; background: #ff0000; border: none; border-radius: 20px; cursor: pointer; font-size: 16px; color: white;">
+                IMPOSSIBLE MODE
+            </button>
+            <p id="konamiProgress" style="margin-top: 10px;">Codes: 0/10 | Time: 30s</p>
+        </div>
+        
+        <!-- Challenge 8 -->
+        <div class="challenge-card">
+            <h2>💀 Ultimate Chaos Survivor</h2>
+            <span class="difficulty impossible">IMPOSSIBLE</span>
+            <p>Complete ALL tasks and unlock ALL achievements in a single session!</p>
+            <p><strong>Reward:</strong> 5000 Misery Points + "Chaos Master" badge + Eternal Glory</p>
+            <button onclick="startChallenge('ultimate')" style="padding: 10px 20px; background: #ff0000; border: none; border-radius: 20px; cursor: pointer; font-size: 16px; color: white;">
+                ATTEMPT GREATNESS
+            </button>
+            <p id="ultimateProgress" style="margin-top: 10px;">Overall Progress: 0%</p>
+        </div>
+        
+        <div style="text-align: center; margin: 40px 0;">
+            <h2 style="color: white;">🏆 Your Challenge Stats</h2>
+            <p style="color: #ffff00; font-size: 24px;">Challenges Completed: <span id="completedCount">0/8</span></p>
+            <p style="color: #00ff00; font-size: 24px;">Total Misery Points: <span id="totalPoints">0</span></p>
+        </div>
+    </div>
+    
+    <script>
+        function startChallenge(type) {
+            const messages = {
+                buttonChase: 'Good luck catching that button! 😈',
+                formHell: 'May the odds be never in your favor! 😱',
+                hiddenLinks: 'They\'re invisible... almost! 🔍',
+                endurance: 'Your 1-hour journey begins NOW! ⏰',
+                cookieClicker: 'Click until your fingers bleed! 🍪',
+                captcha: '2+2=5, 3+3=7, got it? 🤖',
+                konamiSpeed: 'This is actually impossible. Good luck! 🎮',
+                ultimate: 'Are you insane?! Yes, proceed! 💀'
+            };
+            
+            alert(messages[type] || 'Challenge started!');
+            
+            // Would integrate with main game logic
+            console.log('Challenge started:', type);
+        }
+    </script>
+</body>
+</html>

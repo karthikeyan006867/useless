@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Your Hall of Shame</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤡</text></svg>">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .profile-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+        
+        .profile-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            animation: spin 10s linear infinite;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .stat-row {
+            background: rgba(255,255,255,0.2);
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .badge-collection {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .badge {
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 48px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+        
+        .badge:hover {
+            transform: scale(1.2) rotate(10deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <div class="profile-header">
+            <div class="avatar">🤡</div>
+            <h1 style="color: white; text-shadow: 2px 2px #000;">Your Profile of Shame</h1>
+            <p style="color: #ffff00; font-size: 20px;" id="username">Loading...</p>
+        </div>
+        
+        <div style="margin: 30px 0;">
+            <h2 style="color: white; text-align: center;">📊 Terrible Statistics</h2>
+            
+            <div class="stat-row">
+                <span style="color: white; font-size: 18px;">Total Time Wasted:</span>
+                <span style="color: #00ff00; font-size: 24px; font-weight: bold;" id="timeWasted">0 hours</span>
+            </div>
+            
+            <div class="stat-row">
+                <span style="color: white; font-size: 18px;">Total Clicks:</span>
+                <span style="color: #00ff00; font-size: 24px; font-weight: bold;" id="totalClicks">0</span>
+            </div>
+            
+            <div class="stat-row">
+                <span style="color: white; font-size: 18px;">Achievements Unlocked:</span>
+                <span style="color: #00ff00; font-size: 24px; font-weight: bold;" id="achievements">0/25</span>
+            </div>
+            
+            <div class="stat-row">
+                <span style="color: white; font-size: 18px;">Tasks Completed:</span>
+                <span style="color: #00ff00; font-size: 24px; font-weight: bold;" id="tasks">0/15</span>
+            </div>
+            
+            <div class="stat-row">
+                <span style="color: white; font-size: 18px;">Misery Points:</span>
+                <span style="color: #ffff00; font-size: 24px; font-weight: bold;" id="points">0</span>
+            </div>
+            
+            <div class="stat-row">
+                <span style="color: white; font-size: 18px;">Global Rank:</span>
+                <span style="color: #ff00ff; font-size: 24px; font-weight: bold;">#999,999</span>
+            </div>
+            
+            <div class="stat-row">
+                <span style="color: white; font-size: 18px;">Sanity Level:</span>
+                <span style="color: #ff0000; font-size: 24px; font-weight: bold;">NONEXISTENT</span>
+            </div>
+        </div>
+        
+        <div style="margin: 40px 0;">
+            <h2 style="color: white; text-align: center;">🏅 Badge Collection</h2>
+            <div class="badge-collection" id="badgeCollection">
+                <!-- Populated by JavaScript -->
+            </div>
+        </div>
+        
+        <div style="margin: 40px 0; text-align: center;">
+            <h2 style="color: white;">⚙️ Account Settings</h2>
+            <button onclick="changePassword()" style="padding: 10px 20px; background: #ff6600; color: white; border: none; border-radius: 20px; margin: 10px; cursor: pointer; font-size: 16px;">
+                🔑 Change Password (Requires 200 chars)
+            </button>
+            <button onclick="exportData()" style="padding: 10px 20px; background: #00ff00; color: #000; border: none; border-radius: 20px; margin: 10px; cursor: pointer; font-size: 16px;">
+                📥 Export Data (Gets Corrupted)
+            </button>
+            <button onclick="deleteAccount()" style="padding: 10px 20px; background: #ff0000; color: white; border: none; border-radius: 20px; margin: 10px; cursor: pointer; font-size: 16px;">
+                💀 Delete Account (Doesn't Work)
+            </button>
+        </div>
+        
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="dashboard.html" style="color: #00ffff; font-size: 18px;">← Back to Dashboard</a>
+        </div>
+    </div>
+    
+    <script>
+        // Load profile data
+        const demoUser = JSON.parse(localStorage.getItem('demoUser') || '{}');
+        const demoData = JSON.parse(localStorage.getItem('demoUserData') || '{}');
+        
+        if (demoUser.username) {
+            document.getElementById('username').textContent = demoUser.username;
+        }
+        
+        // Update stats
+        if (demoData.stats) {
+            const hours = Math.floor((demoData.stats.timeSpent || 0) / 3600000);
+            const minutes = Math.floor(((demoData.stats.timeSpent || 0) % 3600000) / 60000);
+            document.getElementById('timeWasted').textContent = `${hours}h ${minutes}m`;
+            document.getElementById('totalClicks').textContent = demoData.stats.totalClicks || 0;
+        }
+        
+        // Badge collection
+        const badges = ['🏆', '🎖️', '🥇', '🥈', '🥉', '⭐', '🌟', '✨', '💫', '🔥'];
+        const container = document.getElementById('badgeCollection');
+        badges.forEach(badge => {
+            const div = document.createElement('div');
+            div.className = 'badge';
+            div.textContent = badge;
+            div.title = 'Hover for effect!';
+            container.appendChild(div);
+        });
+        
+        function changePassword() {
+            const newPassword = prompt('Enter new password (minimum 200 characters with 50 emojis):');
+            if (newPassword && newPassword.length >= 200) {
+                alert('✅ Password changed successfully! (Just kidding, it wasn\'t saved)');
+            } else {
+                alert('❌ Password too short! Need ' + (200 - (newPassword?.length || 0)) + ' more characters!');
+            }
+        }
+        
+        function exportData() {
+            alert('📥 Exporting data...\n\n❌ Error: Data corrupted during export!\n\nJust kidding, here\'s nothing: 🤷');
+        }
+        
+        function deleteAccount() {
+            if (confirm('Are you ABSOLUTELY SURE you want to delete your account and all your suffering progress?')) {
+                alert('💀 Deleting account...\n\n😈 Error: Cannot delete! You\'re stuck here forever!');
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Your Nightmare Continues</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤡</text></svg>">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+    <style>
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        
+        .user-header {
+            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            animation: rainbow 5s infinite;
+        }
+        
+        @keyframes rainbow {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 20px;
+            border-radius: 15px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transform: rotate(0deg);
+            transition: all 0.3s;
+        }
+        
+        .stat-card:hover {
+            transform: rotate(5deg) scale(1.05);
+        }
+        
+        .achievements-section {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 20px 0;
+        }
+        
+        .achievement-item {
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .achievement-item.locked {
+            background: #555;
+            opacity: 0.5;
+        }
+        
+        .tasks-section {
+            background: rgba(0,0,0,0.3);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 20px 0;
+        }
+        
+        .task-item {
+            background: linear-gradient(45deg, #f093fb, #f5576c);
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 15px;
+            color: white;
+            position: relative;
+        }
+        
+        .task-progress {
+            height: 20px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 10px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+        
+        .task-progress-fill {
+            height: 100%;
+            background: #00ff00;
+            transition: width 0.3s;
+        }
+        
+        .leaderboard {
+            background: linear-gradient(135deg, #ff9a56, #ff6a00);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 20px 0;
+        }
+        
+        .leaderboard-item {
+            background: rgba(255,255,255,0.2);
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="user-header">
+            <h1>🎪 WELCOME TO YOUR CHAOS DASHBOARD 🎪</h1>
+            <h2 id="welcomeMsg">Loading your terrible data...</h2>
+            <button onclick="signOut()" style="padding: 10px 20px; background: #ff0000; color: white; border: none; border-radius: 20px; cursor: pointer; font-size: 16px; margin-top: 10px;">
+                🚪 Sign Out (Recommended!)
+            </button>
+        </div>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>🏆 Achievements</h3>
+                <p style="font-size: 48px; margin: 10px 0;" id="achievementCount">0/25</p>
+                <p>You're barely surviving!</p>
+            </div>
+            
+            <div class="stat-card">
+                <h3>⏱️ Time Wasted</h3>
+                <p style="font-size: 48px; margin: 10px 0;" id="timeWasted">0 min</p>
+                <p>Your life is ticking away!</p>
+            </div>
+            
+            <div class="stat-card">
+                <h3>😤 Frustration Level</h3>
+                <p style="font-size: 48px; margin: 10px 0;" id="frustrationLevel">MAXIMUM</p>
+                <p>It only gets worse!</p>
+            </div>
+            
+            <div class="stat-card">
+                <h3>🎯 Tasks Completed</h3>
+                <p style="font-size: 48px; margin: 10px 0;" id="tasksCompleted">0/15</p>
+                <p>Good luck with that!</p>
+            </div>
+        </div>
+        
+        <div class="achievements-section">
+            <h2 style="color: white; text-align: center;">🏆 ACHIEVEMENTS (25 Total)</h2>
+            <div id="achievementsList">
+                <!-- Populated by JavaScript -->
+            </div>
+        </div>
+        
+        <div class="tasks-section">
+            <h2 style="color: white; text-align: center;">📋 DAILY TORTURE TASKS</h2>
+            <div id="tasksList">
+                <!-- Populated by JavaScript -->
+            </div>
+        </div>
+        
+        <div class="leaderboard">
+            <h2 style="color: white; text-align: center;">👥 LEADERBOARD OF SUFFERING</h2>
+            <p style="color: white; text-align: center;">Top victims who've endured the most:</p>
+            <div id="leaderboardList">
+                <!-- Populated by JavaScript -->
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="profile.html" style="padding: 15px 30px; background: linear-gradient(45deg, #667eea, #764ba2); color: white; text-decoration: none; border-radius: 50px; font-size: 18px;">
+                👤 View Profile
+            </a>
+            <a href="challenges.html" style="padding: 15px 30px; background: linear-gradient(45deg, #f093fb, #f5576c); color: white; text-decoration: none; border-radius: 50px; font-size: 18px; margin-left: 10px;">
+                🎮 More Challenges
+            </a>
+        </div>
+    </div>
+    
+    <script src="firebase-config.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>
