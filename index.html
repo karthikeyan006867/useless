@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to the Best Website Ever Made!!! Click Here!!!</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Annoying popup that appears randomly -->
+    <div id="annoyingPopup" class="popup">
+        <div class="popup-content">
+            <h2>🎉 CONGRATULATIONS!!! 🎉</h2>
+            <p>You've been selected as our 1,000,000th visitor!</p>
+            <button onclick="closePopup()" id="closeBtn">Close (maybe)</button>
+        </div>
+    </div>
+
+    <!-- Fake loading bar that never finishes -->
+    <div id="fakeLoader" class="loader-container">
+        <h2>Loading your amazing experience...</h2>
+        <div class="loader-bar">
+            <div class="loader-progress"></div>
+        </div>
+        <p id="loadingText">Please wait... 99%</p>
+    </div>
+
+    <!-- Welcome Tutorial -->
+    <div id="tutorial" class="tutorial-overlay">
+        <div class="tutorial-content">
+            <h1>🎉 Welcome to the Worst Website Ever! 🎉</h1>
+            <p>Congratulations! You've stumbled upon the most intentionally terrible website on the internet!</p>
+            <h3>📋 What to Expect:</h3>
+            <ul>
+                <li>✅ Buttons that run away from you</li>
+                <li>✅ Forms that reset themselves randomly</li>
+                <li>✅ Pop-ups that won't close easily</li>
+                <li>✅ Colors that assault your eyes</li>
+                <li>✅ Navigation that moves around</li>
+                <li>✅ Absolutely NO user-friendly design</li>
+            </ul>
+            <p><strong>🎯 Your Mission:</strong> Try to complete the signup form and unlock all achievements!</p>
+            <p style="font-size: 12px; color: #666;">Warning: This experience may cause frustration, laughter, or existential crisis.</p>
+            <button onclick="closeTutorial()" class="tutorial-btn">I Accept My Fate</button>
+            <button onclick="closeTutorial()" class="tutorial-btn" style="opacity: 0.3;">Quit (Doesn't Work)</button>
+        </div>
+    </div>
+
+    <!-- Achievement System -->
+    <div id="achievementPopup" class="achievement-popup">
+        <div class="achievement-content">
+            <h3>🏆 Achievement Unlocked!</h3>
+            <p id="achievementText"></p>
+        </div>
+    </div>
+
+    <!-- Main chaotic content -->
+    <div class="container">
+        <!-- Header that spins -->
+        <header class="spinning-header">
+            <h1>🌟✨ WELCOME TO THE MOST AMAZING WEBSITE ✨🌟</h1>
+            <marquee behavior="scroll" direction="left" scrollamount="20">
+                🔥 HOT DEALS 🔥 CLICK NOW 🔥 LIMITED TIME OFFER 🔥 BUY NOW 🔥
+            </marquee>
+            <p style="font-size: 14px; background: rgba(0,0,0,0.7); color: white; padding: 10px;">
+                👋 New here? This website is INTENTIONALLY terrible! See if you can complete the signup form below!
+            </p>
+        </header>
+
+        <!-- Navigation that moves around -->
+        <nav id="floatingNav" class="floating-nav">
+            <a href="#" onclick="randomize(event)">Home</a>
+            <a href="#" onclick="randomize(event)">About</a>
+            <a href="#" onclick="randomize(event)">Contact</a>
+            <a href="#" onclick="randomize(event)">Products</a>
+            <a href="#" onclick="randomize(event)">Services</a>
+        </nav>
+
+        <!-- Main content -->
+        <main>
+            <!-- Progress Tracker -->
+            <section class="progress-section">
+                <h2>📊 Your Progress</h2>
+                <p>Achievements Unlocked: <span id="achievementCounter">0</span>/10</p>
+                <div class="progress-bar">
+                    <div id="progressFill" class="progress-fill"></div>
+                </div>
+                <p style="font-size: 12px; margin-top: 10px;">Complete tasks to unlock achievements and prove you can survive this website!</p>
+            </section>
+
+            <section class="intro">
+                <h2 class="rainbow-text">Welcome to Paradise! 🌈</h2>
+                <p style="font-size: 8px;">Fine print: By viewing this page you agree to sell your soul</p>
+                <p class="upside-down">This website is designed with cutting-edge technology from 1996!</p>
+                <div class="info-box">
+                    <h4>💡 Pro Tip:</h4>
+                    <p>This website violates every rule of good web design. Why? Because it's FUN! Try to:</p>
+                    <ul style="text-align: left; margin-left: 20px;">
+                        <li>Click the runaway button below</li>
+                        <li>Complete the impossible signup form</li>
+                        <li>Find all hidden features</li>
+                        <li>Keep your sanity intact</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- The infamous running button -->
+            <section class="button-section">
+                <h3>🎯 Challenge #1: Click the button to continue:</h3>
+                <p style="font-size: 14px; color: #666;">Hint: Try to catch it! (Good luck with that 😈)</p>
+                <p>Attempts: <span id="buttonAttempts">0</span></p>
+                <button id="runawayBtn" class="runaway-button" onmouseover="runAway(event)" onclick="catchButton()">
+                    Click Me!
+                </button>
+            </section>
+
+            <!-- Form from hell -->
+            <section class="form-section">
+                <h3>🎯 Challenge #2: Sign Up for Our Amazing Newsletter!</h3>
+                <p style="background: rgba(255,255,0,0.3); padding: 10px; border: 2px dashed red;">
+                    ⚠️ <strong>WARNING:</strong> This form has ridiculous requirements and might reset itself randomly!
+                    Read the hints carefully!
+                </p>
+                <form id="terribleForm" onsubmit="return handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="name">Name (must be exactly 7 characters):</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email (only accepts emails ending in @aol.com):</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password (must contain emoji):</label>
+                        <input type="text" id="password" name="password" required oninput="checkPassword()">
+                        <div id="passwordStrength" class="password-strength"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="captcha">Solve this CAPTCHA: What is 2+2?</label>
+                        <input type="text" id="captcha" name="captcha" required>
+                        <small>(Hint: It's not 4)</small>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms" style="font-size: 6px;">
+                            I agree to receive 50 emails per day and sacrifice my firstborn child
+                        </label>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Submit</button>
+                    <button type="button" onclick="resetForm()" class="reset-btn">Reset (this will happen anyway)</button>
+                </form>
+            </section>
+
+            <!-- Random spinning images -->
+            <section class="spinning-section">
+                <h3>Our Satisfied Customers:</h3>
+                <div class="spinner">🙂</div>
+                <div class="spinner reverse">😃</div>
+                <div class="spinner">😄</div>
+                <div class="spinner reverse">😁</div>
+            </section>
+
+            <!-- Invisible link maze -->
+            <section class="invisible-section">
+                <h3>Can you find the secret link?</h3>
+                <div class="link-maze">
+                    <a href="#" style="opacity: 0.01;">Secret</a>
+                    <a href="#" style="opacity: 0.02;">Hidden</a>
+                    <a href="#" style="opacity: 0.01;">Mystery</a>
+                    <a href="#" style="opacity: 0.03;">Treasure</a>
+                    <a href="#" style="opacity: 0.01;">Click me!</a>
+                </div>
+            </section>
+
+            <!-- Auto-scrolling text -->
+            <section>
+                <h3>Important Information:</h3>
+                <div class="scroll-text">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. This text will scroll automatically 
+                    whether you want it to or not! Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo 
+                    consequat. You're still reading this? Duis aute irure dolor in reprehenderit in voluptate velit 
+                    esse cillum dolore eu fugiat nulla pariatur. Why are you torturing yourself?
+                </div>
+            </section>
+
+            <!-- Sound Control (Fake) -->
+            <section class="sound-section">
+                <h3>🔊 Sound Control</h3>
+                <p>Adjust the volume of our amazing background music!</p>
+                <input type="range" id="volumeSlider" min="0" max="100" value="50" oninput="adjustVolume(this.value)">
+                <p>Volume: <span id="volumeDisplay">50</span>%</p>
+                <p style="font-size: 10px; color: #999;">Note: There is no music. This does nothing. 🎵</p>
+            </section>
+
+            <!-- Dark Mode Toggle (Broken) -->
+            <section class="theme-section">
+                <h3>🌙 Dark Mode</h3>
+                <p>Enable dark mode for a better experience!</p>
+                <label class="switch">
+                    <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode()">
+                    <span class="slider"></span>
+                </label>
+                <p id="darkModeStatus">Currently: Light Mode</p>
+            </section>
+
+            <!-- Useless buttons -->
+            <section class="useless-buttons">
+                <h3>🎮 Interactive Features:</h3>
+                <p style="font-size: 12px;">These buttons are completely useless, but feel free to click them!</p>
+                <button onclick="doNothing('ram')">Download More RAM</button>
+                <button onclick="doNothing('money')">Make Money Fast</button>
+                <button onclick="doNothing('ipad')">Free iPad</button>
+                <button onclick="doNothing('singles')">Hot Singles in Your Area</button>
+                <button onclick="doNothing('system32')">Delete System32</button>
+                <button onclick="showHelp()">Help</button>
+            </section>
+
+            <!-- Click Counter Game -->
+            <section class="game-section">
+                <h3>🎮 Mini Game: Cookie Clicker (Broken Edition)</h3>
+                <p>Click the cookie to earn points!</p>
+                <div class="cookie-clicker">
+                    <button id="cookieBtn" onclick="clickCookie()">🍪</button>
+                    <p>Cookies: <span id="cookieCount">0</span></p>
+                    <p style="font-size: 10px; color: red;">Note: Points randomly decrease for no reason! 😈</p>
+                </div>
+            </section>
+
+            <!-- FAQ Section -->
+            <section class="faq-section">
+                <h3>❓ Frequently Asked Questions</h3>
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <h4>Q: Why is this website so terrible? ▼</h4>
+                    <p class="faq-answer">A: Because it's intentionally designed that way for a challenge! Every annoying feature is carefully crafted.</p>
+                </div>
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <h4>Q: Can I actually complete the form? ▼</h4>
+                    <p class="faq-answer">A: Yes! Follow the hints: Name = 7 chars, Email = @aol.com, Password = has emoji, CAPTCHA = 5</p>
+                </div>
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <h4>Q: How do I stop the popups? ▼</h4>
+                    <p class="faq-answer">A: They only appear 3 times now! Just keep closing them (maybe).</p>
+                </div>
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <h4>Q: My eyes hurt. Is this normal? ▼</h4>
+                    <p class="faq-answer">A: Perfectly normal! That's the rainbow gradient working as intended. 🌈</p>
+                </div>
+            </section>
+
+            <!-- Massive text -->
+            <section>
+                <p style="font-size: 100px; line-height: 0.8;">HI</p>
+            </section>
+
+            <!-- Randomly positioned elements -->
+            <div id="floatingElement1" class="floating-element">👻</div>
+            <div id="floatingElement2" class="floating-element">🎃</div>
+            <div id="floatingElement3" class="floating-element">💀</div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <marquee behavior="alternate">
+                © 2026 Terrible Websites Inc. | All wrongs reserved | 
+                <a href="#" style="color: lime;">Privacy Policy (we sell your data)</a> | 
+                <a href="#" style="color: cyan;">Terms of Service (unreadable)</a>
+            </marquee>
+            <p style="font-size: 4px;">This website is best viewed in Internet Explorer 6 at 800x600 resolution</p>
+        </footer>
+    </div>
+
+    <!-- Cursor trail -->
+    <canvas id="cursorCanvas"></canvas>
+
+    <script src="script.js"></script>
+</body>
+</html>
