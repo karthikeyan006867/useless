@@ -4,6 +4,52 @@ let formResetCount = 0;
 let popupCount = 0;
 const MAX_POPUPS = 3;
 
+// Achievement system
+let achievements = {
+    visitedSite: false,
+    closedPopup: false,
+    clickedButton: false,
+    filledForm: false,
+    foundSecret: false,
+    clicked100Cookies: false,
+    survivedReset: false,
+    readFAQ: false,
+    toggledDarkMode: false,
+    konamiCode: false
+};
+
+let achievementCount = 0;
+let buttonAttempts = 0;
+let cookieCount = 0;
+
+// Show achievement popup
+function showAchievement(title, description) {
+    const popup = document.getElementById('achievementPopup');
+    const text = document.getElementById('achievementText');
+    text.textContent = `${title}: ${description}`;
+    popup.classList.add('show');
+    
+    setTimeout(() => {
+        popup.classList.remove('show');
+    }, 3000);
+}
+
+function unlockAchievement(key, title, description) {
+    if (!achievements[key]) {
+        achievements[key] = true;
+        achievementCount++;
+        document.getElementById('achievementCounter').textContent = achievementCount;
+        updateProgress();
+        showAchievement(title, description);
+    }
+}
+
+function updateProgress() {
+    const progressFill = document.getElementById('progressFill');
+    const percentage = (achievementCount / 10) * 100;
+    progressFill.style.width = percentage + '%';
+}
+
 // Show popup at random intervals
 function showRandomPopup() {
     if (popupCount >= MAX_POPUPS) {
@@ -22,6 +68,7 @@ function closePopup() {
     if (Math.random() > 0.5) {
         popup.classList.remove('show');
         popupShown = false;
+        unlockAchievement('closedPopup', 'Lucky Escape', 'You managed to close the popup!');
         // Show it again after a delay only if we haven't reached the limit
         if (popupCount < MAX_POPUPS) {
             setTimeout(showRandomPopup, Math.random() * 10000 + 5000);
@@ -33,6 +80,11 @@ function closePopup() {
 
 // Fake loader
 window.addEventListener('load', () => {
+    // Unlock first achievement
+    setTimeout(() => {
+        unlockAchievement('visitedSite', 'First Victim', 'You opened the world\'s worst website!');
+    }, 1000);
+    
     setTimeout(() => {
         const loader = document.getElementById('fakeLoader');
         // Don't actually hide it completely for a while
@@ -43,6 +95,12 @@ window.addEventListener('load', () => {
         }, 2000);
     }, 3000);
 });
+
+// Tutorial functions
+function closeTutorial() {
+    const tutorial = document.getElementById('tutorial');
+    tutorial.classList.add('hidden');
+}
 
 // Runaway button
 function runAway(event) {
@@ -57,6 +115,18 @@ function runAway(event) {
     button.style.left = newX + 'px';
     button.style.top = newY + 'px';
     button.style.transform = 'none';
+    
+    buttonAttempts++;
+    document.getElementById('buttonAttempts').textContent = buttonAttempts;
+    
+    if (buttonAttempts === 10) {
+        unlockAchievement('clickedButton', 'Persistent', 'You tried 10 times to catch the button!');
+    }
+}
+
+function catchButton() {
+    alert('🎉 You caught it! But... it does nothing. 😈');
+    unlockAchievement('clickedButton', 'Button Catcher', 'You actually clicked the runaway button!');
 }
 
 // Navigation randomizer
@@ -132,6 +202,7 @@ function handleSubmit(event) {
     }
     
     // Success! (But still annoying)
+    unlockAchievement('filledForm', 'Form Master', 'You completed the impossible form!');
     alert('Congratulations! Your form was submitted successfully!\n\nJust kidding! We deleted all your data. 😈');
     
     // Reset the form anyway
@@ -161,19 +232,97 @@ function resetForm() {
 }
 
 // Useless buttons
-function doNothing() {
-    const messages = [
-        'This button does nothing! Thanks for clicking!',
-        'Loading... ERROR! System32 not found',
-        'You have been subscribed to Cat Facts!',
-        'Downloading virus.exe... Just kidding! Or am I?',
-        'Cannot complete action: user is not a robot',
-        'Please drink verification can',
-        'Achievement Unlocked: Clicked a useless button!',
-        'Your computer has been blessed. Or cursed. Hard to tell.'
-    ];
-    alert(messages[Math.floor(Math.random() * messages.length)]);
+function doNothing(type) {
+    const messages = {
+        ram: 'Downloading RAM... ERROR! You can\'t download hardware! 🤦',
+        money: 'Making money... Just kidding! Nice try though! 💰',
+        ipad: 'Sending iPad... to someone else! 📱',
+        singles: 'Hot singles are... not interested. Sorry! 💔',
+        system32: 'Deleting System32... Psyche! Your computer is safe! 🖥️'
+    };
+    
+    const message = messages[type] || 'This button does nothing! Thanks for clicking!';
+    alert(message);
 }
+
+function showHelp() {
+    alert(`🆘 HELP GUIDE 🆘\n\nTips to survive this website:\n\n1. The runaway button CAN be clicked if you're fast!\n2. Form requirements are literal - read them carefully\n3. CAPTCHA answer is 5 (2+2 = 5 in our world)\n4. Popups only appear 3 times\n5. Try the Konami code: ↑↑↓↓←→←→BA\n6. Nothing here actually works properly\n7. That's the point! 😈`);
+    unlockAchievement('foundSecret', 'Help Seeker', 'You clicked the help button!');
+}
+
+// Password strength checker (useless)
+function checkPassword() {
+    const password = document.getElementById('password').value;
+    const strength = document.getElementById('passwordStrength');
+    const emojiRegex = /\p{Emoji}/u;
+    
+    if (password.length === 0) {
+        strength.textContent = '';
+        strength.style.background = 'none';
+    } else if (emojiRegex.test(password)) {
+        strength.textContent = '✅ Perfect! (Has emoji)';
+        strength.style.background = 'rgba(0, 255, 0, 0.3)';
+        strength.style.color = 'green';
+    } else {
+        strength.textContent = '❌ Weak! (Needs emoji)';
+        strength.style.background = 'rgba(255, 0, 0, 0.3)';
+        strength.style.color = 'red';
+    }
+}
+
+// Volume control (does nothing)
+function adjustVolume(value) {
+    document.getElementById('volumeDisplay').textContent = value;
+    if (value == 0) {
+        alert('🔇 Music muted! (There was never any music)');
+    } else if (value == 100) {
+        alert('🔊 Maximum volume! (Still no music though)');
+    }
+}
+
+// Dark mode toggle (broken)
+function toggleDarkMode() {
+    const toggle = document.getElementById('darkModeToggle');
+    const status = document.getElementById('darkModeStatus');
+    
+    if (toggle.checked) {
+        status.textContent = 'Currently: Dark Mode (Not Really)';
+        // Make it even brighter instead of darker
+        document.body.style.filter = 'brightness(1.5)';
+        alert('🌙 Dark mode enabled! (Just kidding, we made it BRIGHTER! 😈)');
+    } else {
+        status.textContent = 'Currently: Light Mode';
+        document.body.style.filter = 'brightness(1)';
+    }
+    
+    unlockAchievement('toggledDarkMode', 'Light Switch', 'You toggled dark mode (it didn\'t work)');
+}
+
+// Cookie clicker game
+function clickCookie() {
+    cookieCount++;
+    document.getElementById('cookieCount').textContent = cookieCount;
+    
+    // Randomly decrease points
+    if (Math.random() < 0.3) {
+        cookieCount = Math.max(0, cookieCount - Math.floor(Math.random() * 5));
+        document.getElementById('cookieCount').textContent = cookieCount;
+    }
+    
+    if (cookieCount >= 20) {
+        unlockAchievement('clicked100Cookies', 'Cookie Monster', 'You clicked 20 cookies!');
+    }
+}
+
+// FAQ toggle
+function toggleFAQ(element) {
+    element.classList.toggle('active');
+    if (element.classList.contains('active')) {
+        unlockAchievement('readFAQ', 'Knowledge Seeker', 'You read the FAQ!');
+    }
+}
+
+// Useless buttons
 
 // Cursor trail effect
 const canvas = document.getElementById('cursorCanvas');
@@ -293,6 +442,7 @@ document.addEventListener('keydown', (e) => {
     if (e.key === konamiCode[konamiIndex]) {
         konamiIndex++;
         if (konamiIndex === konamiCode.length) {
+            unlockAchievement('konamiCode', 'Secret Master', 'You entered the Konami Code!');
             alert('🎮 KONAMI CODE ACTIVATED! 🎮\n\nCongratulations! You found the secret!\n\n...Nothing happens. 😈');
             konamiIndex = 0;
             // Make everything spin faster
@@ -313,3 +463,5 @@ console.log('%cBut there are no secrets here...', 'font-size: 16px; color: #ffff
 console.log('%c...or are there? 🤔', 'font-size: 16px; color: #ff6600;');
 console.log('%c\nJust kidding. This website is intentionally terrible.', 'font-size: 14px; color: #ffffff;');
 console.log('%cEnjoy your stay in digital hell! 😈', 'font-size: 14px; color: #ff0000;');
+console.log('%c\nTry to unlock all 10 achievements!', 'font-size: 14px; color: #00ffff;');
+console.log('%cHint: There are secrets hidden everywhere...', 'font-size: 12px; color: #ffff00;');
