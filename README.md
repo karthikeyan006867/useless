@@ -2,6 +2,11 @@
 
 Welcome to digital chaos! This website was created for the "Borked UI Challenge" - a celebration of everything that makes web design terrible, frustrating, and hilariously broken.
 
+## 🌐 Live Demo
+**[Experience the Chaos Here!](https://karthikeyan006867.github.io/useless/)**
+
+**Repository:** [github.com/karthikeyan006867/useless](https://github.com/karthikeyan006867/useless)
+
 ## 🔥 Features (or Bugs?)
 
 ### Visual Nightmares
@@ -28,38 +33,54 @@ Welcome to digital chaos! This website was created for the "Borked UI Challenge"
 - 🎨 **Cursor Trail**: Rainbow particles follow your mouse
 - 📜 **Auto-Scrolling Text**: You can't stop it
 
+### New Features (Added!)
+- 🏆 **Achievement System**: Unlock 10 achievements as you survive the website
+- 📊 **Progress Tracker**: See how much chaos you've endured
+- 🎓 **Welcome Tutorial**: Learn what horrors await you
+- 🍪 **Cookie Clicker**: A broken mini-game where points randomly decrease
+- 🌙 **Dark Mode**: Makes it brighter instead of darker (oops!)
+- 🔊 **Volume Control**: For the music that doesn't exist
+- 💪 **Password Strength Meter**: Actually checks for emojis
+- ❓ **FAQ Section**: Answers to your burning questions
+- 🎯 **Challenge System**: Try to complete tasks and unlock achievements
+
 ### Hidden "Features"
 - 🎮 **Konami Code**: Try it... if you dare (↑↑↓↓←→←→BA)
 - 🔍 **Nearly Invisible Links**: Can you find them?
 - ⚠️ **Random Alert Spam**: Because interruptions are fun!
 - 🎉 **Fake Loading Screen**: Stuck at 99% forever
 
-## 🚀 How to Run
+## 🚀 How to Run Locally
 
-1. Open `index.html` in any web browser
-2. Prepare your eyes for assault
-3. Try to use the website
-4. Question your life choices
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/karthikeyan006867/useless.git
+   cd useless
+   ```
+2. Open `index.html` in any web browser
+3. Prepare your eyes for assault
+4. Try to use the website
+5. Question your life choices
 
-## 🎯 Deployment
+## 🌐 Live Deployment
+
+**Currently live at:** https://karthikeyan006867.github.io/useless/
+
+## 🎯 Deployment Options
 
 This masterpiece can be hosted on:
-- GitHub Pages
+- ✅ **GitHub Pages** (Currently deployed)
 - Vercel
 - Netlify
 - Any web server brave enough to host it
 
-### GitHub Pages Deployment
-```bash
-git init
-git add .
-git commit -m "Add the worst website ever"
-git branch -M main
-git remote add origin <your-repo-url>
-git push -u origin main
-```
-
-Then enable GitHub Pages in your repository settings!
+### GitHub Pages Setup
+1. Go to your repository settings
+2. Navigate to "Pages" section
+3. Select source: Deploy from branch
+4. Choose branch: `main` and folder: `/ (root)`
+5. Click Save
+6. Your site will be live at: `https://karthikeyan006867.github.io/useless/`
 
 ## 🛠️ Tech Stack
 - **HTML5**: For structure (chaos)
