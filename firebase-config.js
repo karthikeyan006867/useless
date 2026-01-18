@@ -62,7 +62,7 @@ function initializeUser(userId, username, email) {
         stats: {
             timeSpent: 0,
             totalClicks: 0,
-            frustratio nLevel: 0,
+            frustrationLevel: 0,
             tasksCompleted: 0,
             achievementsUnlocked: 0
         }
